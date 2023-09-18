@@ -1,0 +1,56 @@
+public class Job {
+    private String jobName;
+    private String owner;
+    private int effortRequired;
+    private int monthOfCreation;
+    private int yearOfCreation;
+    private String status;
+    //static variable to count jobs
+    private static int jobsCount = 0; 
+
+    // Constructor to initialize mandatory fields
+    public Job(String jobName, String owner) {
+        this.jobName = jobName;
+        this.owner = owner;
+        jobsCount++;
+    }
+
+    // Constructor to accept all attributes and call the above constructor
+    public Job(String jobName, String owner, int effortRequired, int monthOfCreation, int yearOfCreation, String status) {
+        this(jobName, owner); 
+        this.effortRequired = effortRequired;
+        this.monthOfCreation = monthOfCreation;
+        this.yearOfCreation = yearOfCreation;
+        this.status = status;
+    }
+
+    public void displayInfo() {
+        System.out.println("Job Name: " + jobName);
+        System.out.println("Owner: " + owner);
+        if (effortRequired != 0) {
+            System.out.println("Effort Required: " + effortRequired + " months");
+        }
+        if (monthOfCreation != 0 && yearOfCreation != 0) {
+            System.out.println("Creation Date: " + monthOfCreation + "/" + yearOfCreation);
+        }
+        if (status != null) {
+            System.out.println("Status: " + status);
+        }
+    }
+
+    public static int getJobsCount() {
+        return jobsCount;
+    }
+
+    public static void main(String[] args) {
+        Job job1 = new Job("Task A", "Ramya");
+        job1.displayInfo();
+
+        // Creating a job with parameters
+        Job job2 = new Job("Task B", "Prasanna", 6, 8, 2023, "Work in Progress");
+        job2.displayInfo();
+
+        // Getting the value of jobsCount
+        System.out.println("Total Jobs Count: " + Job.getJobsCount());
+    }
+}
